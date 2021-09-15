@@ -4,8 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import org.firstinspires.ftc.teamcode.components.MecanumDrive;
-import org.firstinspires.ftc.teamcode.components.RevGyro;
+
 
 // ****** PLEASE NOTE: This teleop draws by a TOGGLE process, where a press of a button will hold ***********
 // ****** down the chalk until told to stop or chalk color is swapped.
@@ -14,17 +13,12 @@ import org.firstinspires.ftc.teamcode.components.RevGyro;
 @TeleOp(group="main", name="DrawDrive")
 public class DrawDrive extends GorillabotsCentral
 {
-    MecanumDrive drive;
-    RevGyro gyro;
 
     @Override
     public void runOpMode()
     {
         ElapsedTime timer = new ElapsedTime();
         ElapsedTime swap_timer = new ElapsedTime();
-
-        drive = new MecanumDrive(hardwareMap, telemetry);
-        gyro = new RevGyro(hardwareMap, telemetry);
 
         boolean slow_check = false;
         boolean press_down = false;
@@ -35,9 +29,8 @@ public class DrawDrive extends GorillabotsCentral
 
         while(opModeIsActive())
         {
-            double x = gamepad1.left_stick_x;
-            double y = -gamepad1.left_stick_y;
-            double r = gamepad1.right_stick_x;
+            double l = gamepad1.left_stick_y;
+            double r = gamepad1.right_stick_y;
 
            if(gamepad1.right_trigger > 0.45){
                press_down = true;
@@ -67,18 +60,12 @@ public class DrawDrive extends GorillabotsCentral
             }
 
             if(slow_check == false) {
-                drive.go(x, y, r);
+                tank.goTank(r, l);
             }
 
             else if (slow_check == true){
-                drive.go(x * 0.3, y * 0.3, r * 0.3);
+                tank.goTank(r * 0.3, l * 0.3);
         }
-
-            if(gamepad1.a)
-            {
-                drive.resetDrivenDistance();
-                gyro.resetAngle();
-            }
 
             if(gamepad1.b && timer.time() >= 1.0){
                 slow_check = !slow_check;
@@ -90,7 +77,6 @@ public class DrawDrive extends GorillabotsCentral
             }
 
             telemetry.addData("Chalk Position", ChalkPosition);
-            telemetry.addData("dist", drive.getDrivenDistance());
             telemetry.addData("Slow drive activated?", slow_check);
             telemetry.update();
         }
