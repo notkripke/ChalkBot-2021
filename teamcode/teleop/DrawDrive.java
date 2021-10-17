@@ -46,18 +46,16 @@ public class DrawDrive extends GorillabotsCentral
                press_down = false;
            }
 
-           if(press_down == false){
+           if(!press_down) {
                column.columnDown();
-           }
-
-           if(press_down == true){
+           } else {
                column.columnUp();
            }
 
             if(gamepad1.right_bumper && swap_timer.time() >= 0.75){
-            ShiftChalkRight();
-            ChalkPosition += 1;
-            swap_timer.reset();
+                ShiftChalkRight();
+                ChalkPosition += 1;
+                swap_timer.reset();
             }
 
             if(gamepad1.left_bumper && swap_timer.time() >= 0.75){
@@ -66,13 +64,11 @@ public class DrawDrive extends GorillabotsCentral
                 swap_timer.reset();
             }
 
-            if(slow_check == false) {
+            if(!slow_check) {
                 drive.go(x, y, r);
-            }
-
-            else if (slow_check == true){
+            } else {
                 drive.go(x * 0.3, y * 0.3, r * 0.3);
-        }
+            }
 
             if(gamepad1.a)
             {
@@ -80,7 +76,7 @@ public class DrawDrive extends GorillabotsCentral
                 gyro.resetAngle();
             }
 
-            if(gamepad1.b && timer.time() >= 1.0){
+            if(gamepad1.b && timer.time() >= 0.5){
                 slow_check = !slow_check;
                 timer.reset();
             }
@@ -90,7 +86,7 @@ public class DrawDrive extends GorillabotsCentral
             }
 
             telemetry.addData("Chalk Position", ChalkPosition);
-            telemetry.addData("dist", drive.getDrivenDistance());
+            telemetry.addData("Distance", drive.getDrivenDistance());
             telemetry.addData("Slow drive activated?", slow_check);
             telemetry.update();
         }
