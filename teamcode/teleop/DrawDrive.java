@@ -10,7 +10,6 @@ import org.firstinspires.ftc.teamcode.components.RevGyro;
 // ****** PLEASE NOTE: This teleop draws by a TOGGLE process, where a press of a button will hold ***********
 // ****** down the chalk until told to stop or chalk color is swapped.
 
-@Disabled
 @TeleOp(group="main", name="DrawDrive")
 public class DrawDrive extends GorillabotsCentral
 {
@@ -27,7 +26,7 @@ public class DrawDrive extends GorillabotsCentral
         gyro = new RevGyro(hardwareMap, telemetry);
 
         boolean slow_check = false;
-        boolean press_down = false;
+        boolean drawing = false;
 
         int ChalkPosition = 1;
 
@@ -35,21 +34,16 @@ public class DrawDrive extends GorillabotsCentral
 
         while(opModeIsActive())
         {
-            double x = gamepad1.left_stick_x;
-            double y = -gamepad1.left_stick_y;
-            double r = gamepad1.right_stick_x;
-
-           if(gamepad1.right_trigger > 0.45){
-               press_down = true;
-           }
-           if(gamepad1.left_trigger > 0.45){
-               press_down = false;
-           }
-
-           if(!press_down) {
+           double x = gamepad1.left_stick_x;
+           double y = -gamepad1.left_stick_y;
+           double r = gamepad1.right_stick_x;
+           
+           if(gamepad1.right_trigger > 0.45) {
                column.columnDown();
+               drawing = true;
            } else {
                column.columnUp();
+               drawing = false;
            }
 
             if(gamepad1.right_bumper && swap_timer.time() >= 0.75){
@@ -81,13 +75,14 @@ public class DrawDrive extends GorillabotsCentral
                 timer.reset();
             }
 
-            if(ChalkPosition == -1 || ChalkPosition == 9){
+            if(ChalkPosition == 0 || ChalkPosition == 9){
                 ChalkPosition = 8;
             }
 
             telemetry.addData("Chalk Position", ChalkPosition);
             telemetry.addData("Distance", drive.getDrivenDistance());
             telemetry.addData("Slow drive activated?", slow_check);
+            telemetry.addData("Drawing?", drawing);
             telemetry.update();
         }
     }
