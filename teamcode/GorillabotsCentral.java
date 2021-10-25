@@ -5,20 +5,19 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 import org.firstinspires.ftc.teamcode.components.Column;
-import org.firstinspires.ftc.teamcode.components.Turret;
-import org.firstinspires.ftc.teamcode.components.AutoDrive;
-import org.firstinspires.ftc.teamcode.components.MecanumDrive;
+import org.firstinspires.ftc.teamcode.components.Drive;
+//import org.firstinspires.ftc.teamcode.components.Turret;
+
 import org.firstinspires.ftc.teamcode.components.RevGyro;
 
 import static java.lang.Math.abs;
 
 public abstract class GorillabotsCentral extends LinearOpMode {
 
-    public AutoDrive ADrive;
-    public MecanumDrive drive;
+    public Drive drive;
     public RevGyro gyro;
     public ElapsedTime timer;
-    public Turret turret;
+    //public Turret turret;
     public Column column;
 
     /*
@@ -66,7 +65,7 @@ public abstract class GorillabotsCentral extends LinearOpMode {
 
         column = new Column(hardwareMap, telemetry);
 
-        turret = new Turret(hardwareMap, telemetry);
+        //turret = new Turret(hardwareMap, telemetry);
 
         //gyro = new RevGyro(hardwareMap,telemetry);
 
@@ -78,9 +77,7 @@ public abstract class GorillabotsCentral extends LinearOpMode {
     {
         timer = new ElapsedTime();
 
-        ADrive = new AutoDrive(hardwareMap,telemetry);
-
-        drive = new MecanumDrive(hardwareMap,telemetry);
+        drive = new Drive(hardwareMap,telemetry);
 
         gyro = new RevGyro(hardwareMap,telemetry);
 
@@ -97,51 +94,13 @@ public abstract class GorillabotsCentral extends LinearOpMode {
             (WHEEL_DIAMETER_INCHES * 3.1415);
 
 
-    public void ShiftChalkLeft(){
+   /* public void ShiftChalkLeft(){
         column.columnUp();
         turret.turretLeft();
-    }
-    public void ShiftChalkRight(){
-        column.columnUp();
-        turret.turretRight();
-    }
+    }*/
+    //public void ShiftChalkRight(){
+       // column.columnUp();
+     //   turret.turretRight();
+    //}
 
-    public void stopMotors()
-    {
-        drive.mfr.setPower(0);
-        drive.mfl.setPower(0);
-        drive.mbr.setPower(0);
-        drive.mbl.setPower(0);
-    }
-    public void setMotorsBackwards(){
-        drive.mfr.setDirection(DcMotor.Direction.REVERSE);
-        drive.mfl.setDirection(DcMotor.Direction.FORWARD);
-        drive.mbr.setDirection(DcMotor.Direction.REVERSE);
-        drive.mbl.setDirection(DcMotor.Direction.FORWARD);
-    }
-
-    public void setDriveEncoderOn(boolean on) {
-        if (on) {
-            drive.mfr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            drive.mfr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            drive.mfr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            drive.mbr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            drive.mbr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            drive.mbr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            drive.mfl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            drive.mfl.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            drive.mfl.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            drive.mbl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            drive.mbl.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            drive.mbl.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        } else {
-            drive.mfr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            drive.mbr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            drive.mfl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            drive.mbl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        }
-    }
 }

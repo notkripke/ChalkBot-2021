@@ -11,9 +11,9 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Column
 {
-    private Telemetry tele;
+    public Telemetry tele;
 
-    private Servo column;
+    public Servo column;
 
     public static final double downPos = .63;//Adjustable and probably wrong
     public static final double upPos = .05;//Adjustable and probably wrong
