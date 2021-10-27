@@ -3,12 +3,12 @@ import org.firstinspires.ftc.teamcode.GorillabotsCentral;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import org.firstinspires.ftc.teamcode.components.ColumnFR;
-import org.firstinspires.ftc.teamcode.components.ColumnCR;
 
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.components.ColumnFR;
+import org.firstinspires.ftc.teamcode.components.ColumnCR;
 import org.firstinspires.ftc.teamcode.components.Drive;
 import org.firstinspires.ftc.teamcode.components.RevGyro;
 import org.firstinspires.ftc.teamcode.components.Turret;
