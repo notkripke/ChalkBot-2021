@@ -73,34 +73,10 @@ public abstract class GorillabotsCentral extends LinearOpMode {
         telemetry.update();
     }
 
-    public void initializeComponentsAutonomous()
-    {
-        timer = new ElapsedTime();
-
-        drive = new Drive(hardwareMap,telemetry);
-
-        gyro = new RevGyro(hardwareMap,telemetry);
-
-        telemetry.addData("done:","init");
-        telemetry.update();
-    }
-
     public static final int degreeCorrection = 180;
 //160
     public static final double COUNTS_PER_MOTOR_REV = 384;     //12.5:1
     public static final double DRIVE_GEAR_REDUCTION = 1.0;     // This is < 1.0 if geared UP
     public static final double WHEEL_DIAMETER_INCHES = 4.0;     // For figuring circumference
-    public static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
-            (WHEEL_DIAMETER_INCHES * 3.1415);
-
-
-   /* public void ShiftChalkLeft(){
-        column.columnUp();
-        turret.turretLeft();
-    }*/
-    //public void ShiftChalkRight(){
-       // column.columnUp();
-     //   turret.turretRight();
-    //}
-
+    public static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION)/(WHEEL_DIAMETER_INCHES * 3.1415);
 }
