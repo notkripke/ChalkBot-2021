@@ -1,4 +1,4 @@
-/*package org.firstinspires.ftc.teamcode.components;
+package org.firstinspires.ftc.teamcode.components;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -9,11 +9,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class Turret
-{
-    private Telemetry tele;
+public class Turret{
+    public Telemetry tele;
 
-    private Servo turret;
+    public Servo turret;
 
     public static final double shiftConstant = 0.125;
     // ^This is the amount by which the turret will rotate with each increment.
@@ -41,4 +40,4 @@ public class Turret
         turret.setPosition(shiftConstant);
     }
 
-}*/
+}
