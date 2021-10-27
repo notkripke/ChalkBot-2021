@@ -20,8 +20,6 @@ public class Drive {
         left.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
-    private double lp, rp;
-
     public void go(double l, double r) {
         left.setPower(-l);
         right.setPower(r);
