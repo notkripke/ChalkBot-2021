@@ -3,7 +3,8 @@ import org.firstinspires.ftc.teamcode.GorillabotsCentral;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import org.firstinspires.ftc.teamcode.components.Column;
+import org.firstinspires.ftc.teamcode.components.ColumnFR;
+import org.firstinspires.ftc.teamcode.components.ColumnCR;
 
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -16,29 +17,20 @@ import org.firstinspires.ftc.teamcode.components.Turret;
 // ****** down the chalk until told to stop or chalk color is swapped.
 
 @TeleOp(group="main", name="DrawDrive")
-public class DrawDrive extends GorillabotsCentral
-{
-    RevGyro gyro;
-
-    Drive drive;
-
-    Column column;
-
-    Turret turret;
+public class DrawDrive extends GorillabotsCentral {
+    RevGyro gyro = new RevGyro(hardwareMap, telemetry);
+    
+    Drive drive = new Drive(hardwareMap, telemetry);
+    
+    Column column = new Column(hardwareMap, telemetry);
+    
+    Turret turret = new Turret(hardwareMap, telemetry);
 
     @Override
     public void runOpMode()
     {
         ElapsedTime timer = new ElapsedTime();
         ElapsedTime swap_timer = new ElapsedTime();
-
-        gyro = new RevGyro(hardwareMap, telemetry);
-
-        drive = new Drive(hardwareMap, telemetry);
-
-        column = new Column(hardwareMap, telemetry);
-
-        turret = new Turret(hardwareMap, telemetry);
 
         boolean slow_check = false;
         boolean drawing = false;
@@ -64,13 +56,13 @@ public class DrawDrive extends GorillabotsCentral
            }
 
             if(gamepad1.right_bumper && swap_timer.time() >= 0.75){
-                ShiftChalkRight();
+                turretRight();
                 ChalkPosition += 1;
                 swap_timer.reset();
             }
 
             if(gamepad1.left_bumper && swap_timer.time() >= 0.75){
-                ShiftChalkLeft();
+                turretLeft();
                 ChalkPosition -= 1;
                 swap_timer.reset();
             }
