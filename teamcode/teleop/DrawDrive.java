@@ -1,5 +1,11 @@
 package org.firstinspires.ftc.teamcode.teleop;
+import org.firstinspires.ftc.teamcode.components.ColumnFR;
+import org.firstinspires.ftc.teamcode.components.ColumnCR;
+import org.firstinspires.ftc.teamcode.components.Drive;
+import org.firstinspires.ftc.teamcode.components.RevGyro;
+import org.firstinspires.ftc.teamcode.components.Turret;
 import org.firstinspires.ftc.teamcode.GorillabotsCentral;
+
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -7,14 +13,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.components.ColumnFR;
-import org.firstinspires.ftc.teamcode.components.ColumnCR;
-import org.firstinspires.ftc.teamcode.components.Drive;
-import org.firstinspires.ftc.teamcode.components.RevGyro;
-import org.firstinspires.ftc.teamcode.components.Turret;
-
-// ****** PLEASE NOTE: This teleop draws by a TOGGLE process, where a press of a button will hold ***********
-// ****** down the chalk until told to stop or chalk color is swapped.
+//PLEASE NOTE: This teleop draws by a TOGGLE process, where a press of a button will hold down the chalk until told to stop or chalk color is swapped.
 
 @TeleOp(group="main", name="DrawDrive")
 public class DrawDrive extends GorillabotsCentral {
