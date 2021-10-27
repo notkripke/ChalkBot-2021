@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.components.Drive;
 import org.firstinspires.ftc.teamcode.components.RevGyro;
-//import org.firstinspires.ftc.teamcode.components.Turret;
+import org.firstinspires.ftc.teamcode.components.Turret;
 
 // ****** PLEASE NOTE: This teleop draws by a TOGGLE process, where a press of a button will hold ***********
 // ****** down the chalk until told to stop or chalk color is swapped.
@@ -24,7 +24,7 @@ public class DrawDrive extends GorillabotsCentral
 
     Column column;
 
-  //  Turret turret;
+    Turret turret;
 
     @Override
     public void runOpMode()
@@ -38,9 +38,7 @@ public class DrawDrive extends GorillabotsCentral
 
         column = new Column(hardwareMap, telemetry);
 
-        //turret = new Turret(hardwareMap, telemetry);
-
-
+        turret = new Turret(hardwareMap, telemetry);
 
         boolean slow_check = false;
         boolean drawing = false;
@@ -65,7 +63,7 @@ public class DrawDrive extends GorillabotsCentral
                drawing = false;
            }
 
-           /* if(gamepad1.right_bumper && swap_timer.time() >= 0.75){
+            if(gamepad1.right_bumper && swap_timer.time() >= 0.75){
                 ShiftChalkRight();
                 ChalkPosition += 1;
                 swap_timer.reset();
@@ -75,7 +73,7 @@ public class DrawDrive extends GorillabotsCentral
                 ShiftChalkLeft();
                 ChalkPosition -= 1;
                 swap_timer.reset();
-            }*/
+            }
 
             if(!slow_check) {
                 drive.go(l, r);
