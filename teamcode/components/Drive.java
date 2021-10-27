@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Drive {
-    Telemetry tele;
+    public Telemetry tele;
 
     public DcMotor left, right;
 
