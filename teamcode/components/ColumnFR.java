@@ -15,8 +15,8 @@ public class Column
 
     public Servo column;
 
-    public static final double downPos = .63;//Adjustable and probably wrong
-    public static final double upPos = .05;//Adjustable and probably wrong
+    public static final double downPos = 1;
+    public static final double upPos = 0;
 
     public Column(HardwareMap hardwareMap, Telemetry telemetry)
     {
