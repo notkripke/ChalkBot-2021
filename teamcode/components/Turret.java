@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class Turret{
+public class Turret {
     public Telemetry tele;
     
     public Servo turret;
