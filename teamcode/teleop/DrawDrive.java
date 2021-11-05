@@ -16,7 +16,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 //PLEASE NOTE: This teleop draws by a TOGGLE process, where a press of a button will hold down the chalk until told to stop or chalk color is swapped.
 
 @TeleOp(group="main", name="DrawDrive")
-public class DrawDrive {
+public class DrawDrive extends LinearOpMode{
     RevGyro gyro = new RevGyro(hardwareMap, telemetry);
     
     Drive drive = new Drive(hardwareMap, telemetry);
@@ -55,13 +55,13 @@ public class DrawDrive {
            }
 
             if(gamepad1.right_bumper && swap_timer.time() >= 0.75){
-                turretRight();
+                turret.turretRight();
                 ChalkPosition += 1;
                 swap_timer.reset();
             }
 
             if(gamepad1.left_bumper && swap_timer.time() >= 0.75){
-                turretLeft();
+                turret.turretLeft();
                 ChalkPosition -= 1;
                 swap_timer.reset();
             }
