@@ -24,12 +24,6 @@ public class Column
         column = hardwareMap.servo.get("column");
     }
 
-    public void moveColumn(double pos)
-    {
-        column.setPosition(pos);
-    }
-
-
     public void columnDown()
     {
         column.setPosition(downPos);
