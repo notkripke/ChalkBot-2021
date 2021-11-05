@@ -47,10 +47,10 @@ public class DrawDrive {
            double r = gamepad1.right_stick_y;
            
            if(gamepad1.right_trigger > 0.45) {
-               column.setPosition(1);
+               column.columnDown();
                drawing = true;
            } else {
-               column.setPosition(.05);
+               column.columnUp();
                drawing = false;
            }
 
