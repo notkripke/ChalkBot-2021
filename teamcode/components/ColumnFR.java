@@ -16,7 +16,7 @@ public class Column
     public Servo column;
 
     public static final double downPos = 1;
-    public static final double upPos = 0;
+    public static final double upPos = 0.05;
 
     public Column(HardwareMap hardwareMap, Telemetry telemetry)
     {
