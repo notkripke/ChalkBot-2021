@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class Column
+public class ColumnFR
 {
     public Telemetry tele;
 
@@ -18,18 +18,18 @@ public class Column
     public static final double downPos = 1;
     public static final double upPos = 0.05;
 
-    public Column(HardwareMap hardwareMap, Telemetry telemetry)
+    public ColumnFR(HardwareMap hardwareMap, Telemetry telemetry)
     {
         tele = telemetry;
         column = hardwareMap.servo.get("column");
     }
 
-    public void columnDown()
+    public void columnDownFR()
     {
         column.setPosition(downPos);
     }
 
-    public void columnUp(){
+    public void columnUpFR(){
         column.setPosition(upPos);
     }
 
