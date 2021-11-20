@@ -1,16 +1,12 @@
 package org.firstinspires.ftc.teamcode.teleop;
 
 import org.firstinspires.ftc.teamcode.components.ColumnFR;
-import org.firstinspires.ftc.teamcode.components.ColumnCR;
 import org.firstinspires.ftc.teamcode.components.Drive;
 import org.firstinspires.ftc.teamcode.components.RevGyro;
 import org.firstinspires.ftc.teamcode.components.Turret;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
-import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 //PLEASE NOTE: This teleop draws by a TOGGLE process, where a press of a button will hold down the chalk until told to stop or chalk color is swapped.
@@ -21,25 +17,23 @@ public class DrawDrive extends LinearOpMode{
     
     Drive drive = new Drive(hardwareMap, telemetry);
     
-    Column column = new Column(hardwareMap, telemetry);
+    ColumnFR column = new ColumnFR(hardwareMap, telemetry);
     
     Turret turret = new Turret(hardwareMap, telemetry);
 
-    @Override
     public void runOpMode()
     {
         ElapsedTime timer = new ElapsedTime();
         ElapsedTime swap_timer = new ElapsedTime();
 
         boolean slow_check = false;
-        boolean drawing = false;
+        boolean drawing;
 
         int ChalkPosition = 1;
 
         waitForStart();
 
-        Servo column;
-        column = hardwareMap.get(Servo.class, "column");
+        column = hardwareMap.get(ColumnFR.class, "column");
 
         while(opModeIsActive())
         {
@@ -47,24 +41,24 @@ public class DrawDrive extends LinearOpMode{
            double r = gamepad1.right_stick_y;
            
            if(gamepad1.right_trigger > 0.45) {
-               column.columnDown();
+               column.columnDownFR();
                drawing = true;
            } else {
-               column.columnUp();
+               column.columnUpFR();
                drawing = false;
            }
 
-            if(gamepad1.right_bumper && swap_timer.time() >= 0.75){
+           if(gamepad1.right_bumper && swap_timer.time() >= 0.45){
                 turret.turretRight();
                 ChalkPosition += 1;
                 swap_timer.reset();
-            }
+           }
 
-            if(gamepad1.left_bumper && swap_timer.time() >= 0.75){
+           if(gamepad1.left_bumper && swap_timer.time() >= 0.45){
                 turret.turretLeft();
                 ChalkPosition -= 1;
                 swap_timer.reset();
-            }
+           }
 
             if(!slow_check) {
                 drive.go(l, r);
