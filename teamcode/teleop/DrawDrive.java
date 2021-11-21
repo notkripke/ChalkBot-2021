@@ -1,85 +1,46 @@
 package org.firstinspires.ftc.teamcode.teleop;
 
-import org.firstinspires.ftc.teamcode.components.ColumnFR;
-import org.firstinspires.ftc.teamcode.components.Drive;
-import org.firstinspires.ftc.teamcode.components.RevGyro;
-import org.firstinspires.ftc.teamcode.components.Turret;
-
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-//PLEASE NOTE: This teleop draws by a TOGGLE process, where a press of a button will hold down the chalk until told to stop or chalk color is swapped.
+import org.firstinspires.ftc.teamcode.GorillabotsCentral;
 
-@TeleOp(group="main", name="DrawDrive")
-public class DrawDrive extends LinearOpMode{
-    RevGyro gyro = new RevGyro(hardwareMap, telemetry);
-    
-    Drive drive = new Drive(hardwareMap, telemetry);
-    
-    ColumnFR column = new ColumnFR(hardwareMap, telemetry);
-    
-    Turret turret = new Turret(hardwareMap, telemetry);
 
-    public void runOpMode()
-    {
-        ElapsedTime timer = new ElapsedTime();
-        ElapsedTime swap_timer = new ElapsedTime();
+@TeleOp(group = "AAAAAAAAAA", name = "DrawDrive")
+public class DrawDrive extends GorillabotsCentral {
 
-        boolean slow_check = false;
-        boolean drawing;
+    @Override
+    public void runOpMode() {
 
-        int ChalkPosition = 1;
+        initializeComponents();
+
+        double r;
+        double l;
 
         waitForStart();
 
-        column = hardwareMap.get(ColumnFR.class, "column");
+        while (opModeIsActive()) {
 
-        while(opModeIsActive())
-        {
-           double l = gamepad1.left_stick_y;
-           double r = gamepad1.right_stick_y;
-           
-           if(gamepad1.right_trigger > 0.45) {
-               column.columnDownFR();
-               drawing = true;
-           } else {
-               column.columnUpFR();
-               drawing = false;
-           }
+            r = gamepad1.right_stick_y;
+            l = gamepad1.left_stick_y;
 
-           if(gamepad1.right_bumper && swap_timer.time() >= 0.45){
-                turret.turretRight();
-                ChalkPosition += 1;
-                swap_timer.reset();
-           }
-
-           if(gamepad1.left_bumper && swap_timer.time() >= 0.45){
-                turret.turretLeft();
-                ChalkPosition -= 1;
-                swap_timer.reset();
-           }
-
-            if(!slow_check) {
-                drive.go(l, r);
-            } else {
-                drive.go(l * 0.3, r * 0.3);
+            if(gamepad1.left_bumper){
+                moveTurret(-1);
+            }
+            if(gamepad1.right_bumper){
+                moveTurret(1);
+            }
+            if(gamepad1.left_trigger >= .2){
+                columnUp();
+            }
+            if(gamepad1.right_trigger >= .2){
+                columnDown();
             }
 
+            drive.go(l, r);
 
-            if(gamepad1.b && timer.time() >= 0.5){
-                slow_check = !slow_check;
-                timer.reset();
-            }
-
-            if(ChalkPosition == 0 || ChalkPosition == 9){
-                ChalkPosition = 8;
-            }
-
-            telemetry.addData("Chalk Position", ChalkPosition);
-            telemetry.addData("Slow drive activated?", slow_check);
-            telemetry.addData("Drawing?", drawing);
-            telemetry.update();
         }
     }
 }

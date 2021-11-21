@@ -1,27 +1,41 @@
 package org.firstinspires.ftc.teamcode.components;
 
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class Drive {
-    public Telemetry tele;
+public class Drive
+{
+    Telemetry tele;
 
-    public DcMotor left, right;
+    public DcMotor ml, mr;
 
-    public Drive(HardwareMap hardwareMap, Telemetry telemetry) {
+    public Drive(HardwareMap hardwareMap, Telemetry telemetry)
+    {
         tele = telemetry;
 
-        left = hardwareMap.dcMotor.get("left");
-        right = hardwareMap.dcMotor.get("right");
+        ml = hardwareMap.dcMotor.get("ml");
+        mr = hardwareMap.dcMotor.get("mr");
 
-        right.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        left.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        mr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        ml.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
     }
 
-    public void go(double l, double r) {
-        left.setPower(-l);
-        right.setPower(r);
+    private double l,r;
+
+    public void go(double lP, double rP)
+    {
+
+        l = lP;
+        r = rP;
+
+        ml.setPower(lP);
+        mr.setPower(rP);
+
     }
+
+
 }
